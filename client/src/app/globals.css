@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&family=Roboto:wght@300&display=swap');
+
+
+/* Personal Classes */
+.Roboto {
+    font-family: 'Fira Code', monospace;
+    font-family: 'Roboto', sans-serif;
+}
