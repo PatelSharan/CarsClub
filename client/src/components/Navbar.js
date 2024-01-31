@@ -8,7 +8,7 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className='flex border-b h-14 items-center justify-between px-7 sticky top-0 bg-white w-full z-50'>
+            <nav className='flex border-b h-14 items-center justify-between px-7 top-0 bg-white w-full z-50'>
 
                 {/* Logo Part */}
                 <div>
@@ -24,19 +24,19 @@ const Navbar = () => {
                         <Link href={'/screener'} className='hover:text-black'>Screener</Link>
                     </li>
                     <li className='mr-4'>
-                        <div className='hover:text-black cursor-pointer flex'>More</div>
+                        <Link href={'/'} className='hover:text-black'>More</Link>
                     </li>
 
                     {/* Buttons Part */}
                     <div className='flex'>
                         <li className='mr-3'>
                             <Link href={'/login'}>
-                                <button className='border border-black text-xs p-2 w-20 bg-black text-white hover:text-black hover:bg-white'>Login</button>
+                                <button className='MainBtn'>Login</button>
                             </Link>
                         </li>
                         <li>
                             <Link href={'/signup'}>
-                                <button className='border border-black text-xs p-2 w-20 bg-black text-white hover:text-black hover:bg-white'>Sign Up</button>
+                                <button className='MainBtn'>Sign Up</button>
                             </Link>
                         </li>
                     </div>

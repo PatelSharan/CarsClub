@@ -5,8 +5,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&family=Roboto:wght@300&display=swap');
 
 
-/* Personal Classes */
-.Roboto {
-    font-family: 'Fira Code', monospace;
-    font-family: 'Roboto', sans-serif;
+@layer components {
+    .MainBtn {
+        @apply border border-black text-sm p-2 w-20 bg-black text-white hover:text-black hover:bg-white
+    }
+
+}
+
+@layer utilities {
+
+    /* Personal Classes */
+    .Roboto {
+        font-family: 'Roboto', sans-serif;
+    }
 }
