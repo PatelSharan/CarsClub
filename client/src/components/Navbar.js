@@ -24,7 +24,7 @@ const Navbar = () => {
                         <Link href={'/screener'} className='hover:text-black'>Screener</Link>
                     </li>
                     <li className='mr-4'>
-                        <Link href={'/'} className='hover:text-black'>More</Link>
+                        <Link href={'/compare'} className='hover:text-black'>Compare</Link>
                     </li>
 
                     {/* Buttons Part */}
