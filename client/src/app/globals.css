@@ -1,21 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&family=Roboto:wght@300&display=swap');
-
 
 @layer components {
-    .MainBtn {
-        @apply border border-black text-sm p-2 w-20 bg-black text-white hover:text-black hover:bg-white
+    .MainBtnBlack {
+        @apply border border-black text-sm p-1 min-w-20 bg-black text-white hover:text-black hover:bg-white
     }
+
+    .MainBtnWhite {
+        @apply border border-white text-sm p-1 min-w-20 bg-white text-black hover:text-white hover:bg-black
+    }
+
 
 }
 
 @layer utilities {
 
     /* Personal Classes */
-    .Roboto {
-        font-family: 'Roboto', sans-serif;
+    .RobotoFont {
+        font-family: "Roboto", sans-serif;
+        font-weight: 300;
+        font-style: normal;
     }
+
+    .mulishFont {
+        font-family: "Mulish", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 300;
+        font-style: normal;
+    }
+
 }

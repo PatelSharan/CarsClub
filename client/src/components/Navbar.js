@@ -4,11 +4,10 @@ import Link from 'next/link'
 
 const Navbar = () => {
 
-    const [showMore, setShowMore] = useState(false)
 
     return (
         <>
-            <nav className='flex border-b h-14 items-center justify-between px-7 top-0 bg-white w-full z-50'>
+            <nav className='flex border-b h-14 items-center justify-between px-7 top-0 bg-white w-full z-50 sticky mulishFont'>
 
                 {/* Logo Part */}
                 <div>
@@ -31,12 +30,12 @@ const Navbar = () => {
                     <div className='flex'>
                         <li className='mr-3'>
                             <Link href={'/login'}>
-                                <button className='MainBtn'>Login</button>
+                                <button className='MainBtnBlack'>Login</button>
                             </Link>
                         </li>
                         <li>
                             <Link href={'/signup'}>
-                                <button className='MainBtn'>Sign Up</button>
+                                <button className='MainBtnBlack'>Sign Up</button>
                             </Link>
                         </li>
                     </div>

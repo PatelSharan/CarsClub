@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Navbar />
-        <div className="max-w-[90vw] min-h-[100vh] m-auto Roboto">
+        <div className="max-w-[90vw] min-h-[100vh] m-auto RobotoFont">
           {children}
         </div>
         <Footer />
