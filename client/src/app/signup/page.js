@@ -1,7 +1,54 @@
-import React from 'react'
-import Link from 'next/link'
+'use client'
+import React, { useState } from 'react';
+import { Router, useRouter } from 'next/navigation';
+import Link from 'next/link';
 
-const page = () => {
+const SignUpPage = () => {
+    const router = useRouter()
+
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        password: ''
+    });
+    const [message, setMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch('http://localhost:8000/registeruser', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            setMessage('Registration Successful!');
+            setTimeout(() => {
+                setMessage('')
+            }, 2000);
+            router.push('/');
+            setFormData({ name: '', email: '', password: '' }); // Clear form fields
+
+        } catch (error) {
+            console.error('Error signing up:', error);
+            setErrorMessage('Please Fill Details Properly !');
+            setTimeout(() => {
+                setErrorMessage('')
+            }, 2000);
+        }
+    };
+
     return (
         <>
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -10,28 +57,20 @@ const page = () => {
                         <h1 className="text-xl font-bold leading-tight tracking-tight md:text-2xl">
                             SIGN UP
                         </h1>
-                        <form className="space-y-4 md:space-y-6" action="#">
+                        {message && <p className="text-green-500 font-semibold">{message}</p>}
+                        {errorMessage && <p className="text-red-500 font-semibold">{errorMessage}</p>}
+                        <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6" action="#">
                             <div>
                                 <label htmlFor="name" className="block mb-2 text-sm font-medium">Your Name</label>
-                                <input type="name" name="name" id="name" className="sm:text-sm  border shadow-sm focus:border-blue-600 w-full p-2.5" placeholder="Your Name" required="" />
+                                <input type="text" name="name" id="name" className="sm:text-sm border shadow-sm focus:border-blue-600 w-full p-2.5" placeholder="Your Name" required="" value={formData.name} onChange={handleChange} />
                             </div>
                             <div>
                                 <label htmlFor="email" className="block mb-2 text-sm font-medium">Your email</label>
-                                <input type="email" name="email" id="email" className="sm:text-sm  border shadow-sm focus:border-blue-600 w-full p-2.5" placeholder="name@mail.com" required="" />
+                                <input type="email" name="email" id="email" className="sm:text-sm border shadow-sm focus:border-blue-600 w-full p-2.5" placeholder="name@mail.com" required="" value={formData.email} onChange={handleChange} />
                             </div>
                             <div>
                                 <label htmlFor="password" className="block mb-2 text-sm font-medium">Password</label>
-                                <input type="password" name="password" id="password" placeholder="••••••••" className="sm:text-sm  border shadow-sm focus:border-blue-600 w-full p-2.5" required="" />
-                            </div>
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-start">
-                                    <div className="flex items-center h-5">
-                                        <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" required="" />
-                                    </div>
-                                    <div className="ml-3 text-sm">
-                                        <label htmlFor="remember" className="text-gray-500 dark:text-gray-300 cursor-pointer">Remember me</label>
-                                    </div>
-                                </div>
+                                <input type="password" name="password" id="password" placeholder="••••••••" className="sm:text-sm border shadow-sm focus:border-blue-600 w-full p-2.5" required="" value={formData.password} onChange={handleChange} />
                             </div>
                             <button type="submit" className="MainBtnBlack w-full">Sign Up</button>
                             <div>
@@ -42,7 +81,7 @@ const page = () => {
                 </div>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default page
+export default SignUpPage;

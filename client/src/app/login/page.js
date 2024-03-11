@@ -1,7 +1,55 @@
-import React from 'react'
-import Link from 'next/link'
+'use client'
+import React, { useState } from 'react';
+import { Router, useRouter } from 'next/navigation';
+import Link from 'next/link';
 
-const page = () => {
+const LoginPage = () => {
+
+    const router = useRouter()
+    const [formData, setFormData] = useState({
+        email: '',
+        password: ''
+    });
+    const [message, setMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch('http://localhost:8000/loginuser', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            setMessage('Login Successful!');
+            setTimeout(() => {
+                setMessage('')
+            }, 2000);
+            router.push('/');
+
+            // Clear form fields
+            setFormData({ email: '', password: '' });
+
+        } catch (error) {
+            console.error('Error logging in:', error);
+            setErrorMessage('Please Fill Details Properly !');
+            setTimeout(() => {
+                setErrorMessage('')
+            }, 2000);
+        }
+    };
+
     return (
         <>
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 ">
@@ -10,14 +58,16 @@ const page = () => {
                         <h1 className="text-xl font-bold leading-tight tracking-tight md:text-2xl">
                             LOG IN
                         </h1>
-                        <form className="space-y-4 md:space-y-6" action="#">
+                        {message && <p className="text-green-500 font-semibold">{message}</p>}
+                        {errorMessage && <p className="text-red-500 font-semibold">{errorMessage}</p>}
+                        <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6" action="#">
                             <div>
                                 <label htmlFor="email" className="block mb-2 text-sm font-medium">Your email</label>
-                                <input type="email" name="email" id="email" className="sm:text-sm  border shadow-sm focus:border-blue-600 w-full p-2.5" placeholder="name@mail.com" required="" />
+                                <input type="email" name="email" id="email" className="sm:text-sm  border shadow-sm focus:border-blue-600 w-full p-2.5" placeholder="name@mail.com" required="" value={formData.email} onChange={handleChange} />
                             </div>
                             <div>
                                 <label htmlFor="password" className="block mb-2 text-sm font-medium">Password</label>
-                                <input type="password" name="password" id="password" placeholder="••••••••" className="sm:text-sm  border shadow-sm focus:border-blue-600 w-full p-2.5" required="" />
+                                <input type="password" name="password" id="password" placeholder="••••••••" className="sm:text-sm  border shadow-sm focus:border-blue-600 w-full p-2.5" required="" value={formData.password} onChange={handleChange} />
                             </div>
                             <button type="submit" className="MainBtnBlack w-full">Log In</button>
                             <div className="flex items-center justify-between">
@@ -31,7 +81,7 @@ const page = () => {
                 </div>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default page
+export default LoginPage;
