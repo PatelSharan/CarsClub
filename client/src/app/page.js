@@ -54,16 +54,16 @@ export default function Home() {
           <h1 className='text-3xl font-semibold'>Most Popular Cars</h1>
         </div>
 
-        <div className='grid grid-cols-4'>
-          <div className='my-4 m-auto'>
-            <div className='border shadow-lg w-60 rounded-lg overflow-hidden'>
+        <div className='grid grid-cols-4 py-4'>
+          <div className='m-auto text-sm sm:text-base'>
+            <div className='border shadow-lg w-40 sm:w-60 rounded overflow-hidden'>
               <div className='h-[50%]'>
                 <Image src={G63} alt='Image' width={100} height={100} layout='responsive' className=" max-w-[100%] max-h-[100%] min-w-[100%] min-h-[100%]"></Image>
               </div>
               <div className='p-4'>
-                <h1><span className='font-semibold text-lg'>Car Name : </span><span>G63</span></h1>
+                <h1><span className='font-semibold'>Car Name : </span><span>G63</span></h1>
                 <h1><span className='font-semibold'>Price : </span><span>1.5cr - 4cr</span></h1>
-                <div className='flex justify-center mt-5'>
+                <div className='flex justify-center mt-3'>
                   <button className='MainBtnBlack w-40'>View Car</button>
                 </div>
               </div>
