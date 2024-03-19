@@ -5,6 +5,7 @@ import heroSectionImage from '../Images/HeroSection.jpg';
 import G63 from '../Images/G63.jpg'
 import porsche_911 from '../Images/porsche_911.jpg'
 import porsche_911_Front from '../Images/porsche_911_Front.jpg'
+import CarBox from '@/components/CarBox';
 
 export default function Home() {
 
@@ -49,26 +50,32 @@ export default function Home() {
       </div >
 
       {/* Most Popular Cars Section */}
-      <div className='min-h-96 p-3 mb-10' >
-        <div>
+      <div className='min-h-96 p-3 mb-10 flex flex-col items-center' >
+        <div className='w-full text-left'>
           <h1 className='text-3xl font-semibold'>Most Popular Cars</h1>
         </div>
 
-        <div className='grid grid-cols-4 py-4'>
-          <div className='m-auto text-sm sm:text-base'>
-            <div className='border shadow-lg w-40 sm:w-60 rounded overflow-hidden'>
-              <div className='h-[50%]'>
-                <Image src={G63} alt='Image' width={100} height={100} layout='responsive' className=" max-w-[100%] max-h-[100%] min-w-[100%] min-h-[100%]"></Image>
-              </div>
-              <div className='p-4'>
-                <h1><span className='font-semibold'>Car Name : </span><span>G63</span></h1>
-                <h1><span className='font-semibold'>Price : </span><span>1.5cr - 4cr</span></h1>
-                <div className='flex justify-center mt-3'>
-                  <button className='MainBtnBlack w-40'>View Car</button>
-                </div>
-              </div>
-            </div>
+        <div className='flex items-center justify-center'>
+          {/* leftArrow */}
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className='cursor-pointer text-gray-400 hover:text-black' viewBox="0 0 16 16">
+              <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
+            </svg>
           </div>
+          <div className='grid grid-cols-4 py-4'>
+            {/* Car Box */}
+            <CarBox />
+            <CarBox />
+            <CarBox />
+            <CarBox />
+          </div>
+          {/* rightArrow */}
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className='cursor-pointer text-gray-400 hover:text-black' viewBox="0 0 16 16">
+              <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+            </svg>
+          </div>
+
         </div>
       </div>
     </>
